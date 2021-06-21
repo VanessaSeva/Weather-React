@@ -47,7 +47,7 @@ const Main = () => {
             <hr className="separation"/>
             </div>
             <div>
-                <input type="text" 
+                <input className="inputSearch" type="text" 
                 placeholder="chercher une ville" 
                 onChange={e => setData(e.target.value)} 
                 value={data}
@@ -58,16 +58,17 @@ const Main = () => {
             <div className="container">
             <div className="weatherBox">
                 <h2 className="title">{dateBuilder(new Date())}</h2>
-                <p>
+                <div className="conditions">
+                <p className="detailsBox">
             {weather.name} 
                 </p>
-                <p>
-                {weather.main ? Math.round(weather.main.temp) : "°C"} °C                
+                <p className="detailsBox">
+                {weather.main ? Math.round(weather.main.temp) : ''} °C                
                 </p>
-                <p>
-            {weather.weather?.[0].main}
+                <p className="detailsBox">
+            {weather.weather?.[0].description}
                 </p>
-               
+                </div>
             </div>
           
             </div>
