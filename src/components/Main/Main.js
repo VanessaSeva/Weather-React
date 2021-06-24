@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import Forecast from '../Forecast/Forecast';
 
 const Main = () => {
-
     const api = {
         key: "76a27df4ea541168980658d2bbc73e19",
         base: "http://api.openweathermap.org/data/2.5/"
@@ -26,6 +25,8 @@ const Main = () => {
     }
     
     const dateBuilder = (d) => {
+
+        d = new Date(d);
         let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre",
         "Novembre", "Décembre"];
         let days = ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
@@ -34,11 +35,11 @@ const Main = () => {
         let date = d.getDate();
         let month = months[d.getMonth()];
         let year = d.getFullYear();
-
         return `${day} ${date} ${month} ${year}`
+        
     }
     
-  
+    
 
     return (
         <div>
@@ -72,7 +73,7 @@ const Main = () => {
             </div>
           
             </div>
-           
+           <Forecast dateBuilder={dateBuilder} />
         </div>
     )
 }
