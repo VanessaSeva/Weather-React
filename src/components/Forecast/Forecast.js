@@ -15,8 +15,16 @@ const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=m
         fetch(apiUrl)
           .then((res) => res.json())
           .then((results) => {
+
             setApiData(results)
             console.log(results);
+
+            const getHours = () => {
+              const newDate = new Date("12:00:00");
+              const hours = newDate.getHours();
+              const result = results.filter(hour => hour.hours) 
+              }
+              getHours();
           })
          .catch((err) => {
            setError(err)
@@ -24,19 +32,28 @@ const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=m
          .finally(() => {
            setLoading(false)
          })
-          
+
+        
+        
    }, []);
 
 
-      
+   
     return (
-      <div>
+      <div className="forecastDays">
         {apiData.list &&
           apiData.list.map((day) => (
             <div className="weatherBox1">
-              <p>
-                {day ? props.dateBuilder(day.dt_txt) :''} - {Math.round(day.main.temp)} °C
-              </p>
+              <div>
+                  <p>
+                  {day ? props.dateBuilder(day.dt_txt):''} 
+                  </p>
+               </div>
+               <div>
+                  <p>
+                  {Math.round(day.main.temp)} °C
+                  </p>
+               </div>
             </div>
           ))}
       </div>

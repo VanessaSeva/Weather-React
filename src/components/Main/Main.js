@@ -30,12 +30,14 @@ const Main = () => {
         let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre",
         "Novembre", "Décembre"];
         let days = ["Dimanche","Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-
         let day = days[d.getDay()];
         let date = d.getDate();
         let month = months[d.getMonth()];
         let year = d.getFullYear();
-        return `${day} ${date} ${month} ${year}`
+        let hour = d.getHours();
+      
+       
+        return `${day} ${date} ${month} ${year} ${hour}h`
         
     }
     
@@ -73,7 +75,7 @@ const Main = () => {
             </div>
           
             </div>
-           <Forecast dateBuilder={dateBuilder} />
+           <Forecast dateBuilder={dateBuilder} search={search}/>
         </div>
     )
 }

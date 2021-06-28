@@ -26,10 +26,12 @@ body {
   color: whitesmoke;
 }
 .weatherBox1 {
+  display: flex;
+  flex-direction: column;
   border: 1px solid rgba(247, 242, 242, 0.3);
   margin-top: 50px;
-  width: 150px;
-  height: 100px;
+  width: 100px;
+  height: 150px;
   border-radius: 10px;
   color: whitesmoke;
 }
@@ -68,3 +70,10 @@ body {
   font-family: 'Cinzel', serif;
   
   }
+.forecastDays {
+  display: flex;
+  flex-direction: flex-start;
+ 
+  flex-wrap: wrap;
+  
+}
