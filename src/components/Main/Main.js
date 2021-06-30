@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Forecast from '../Forecast/Forecast';
 import SelectCity from '../SelectCity/SelectCity';
 
@@ -11,12 +11,14 @@ const Main = () => {
 
     const [data, setData] = useState('');
     const [weather, setWeather] = useState({})
+    const [ville, setVille] = useState('')
 
     const search = evt => {
         if (evt.key === "Enter") {
             fetch(`${api.base}weather?q=${data}&lang=fr&units=metric&APPID=${api.key}`)
             .then(res => res.json())
             .then(result => {
+                setVille(data)
                 setData('');
                 setWeather(result)
                  })
@@ -78,7 +80,7 @@ const Main = () => {
          
             </div>
            
-           <Forecast dateBuilder={dateBuilder} search={weather} weather={weather}/>
+           <Forecast dateBuilder={dateBuilder} search={weather} ville={ville} />
 
         </div>
     )

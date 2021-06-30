@@ -12,17 +12,16 @@ const [loading, setLoading] = useState(false)
 const [error, setError] = useState();
 
 
+const ville = props.ville ? props.ville : 'Paris';
 
-
-const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=metric&appid=76a27df4ea541168980658d2bbc73e19'
-
+const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${ville}&units=metric&appid=76a27df4ea541168980658d2bbc73e19`
+console.log(apiUrl);
       useEffect(() => {
         setLoading(true);
         fetch(apiUrl)
           .then((res) => res.json())
           .then((results) => {
-
-            setApiData(results)
+          setApiData(results)
             console.log(results);
             results.filter(value => console.log(moment.unix(value.dt).format("HH:mm:ss")))
 
@@ -33,9 +32,7 @@ const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=m
          })
          .finally(() => {
            setLoading(false)
-         })
-
-        
+         })   
          
    }, []);
 
@@ -53,7 +50,8 @@ const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=Paris&units=m
                </div>
                <div>
                   <p>
-                  {  props.search.main  && props.search.main.temp ? Math.round(props.search.main.temp) : ''} °C
+                  {  day.main  && day.main.temp ? Math.round(day.main.temp) : ''} °C
+                  {ville}
                   </p>
                 </div>
             </div>

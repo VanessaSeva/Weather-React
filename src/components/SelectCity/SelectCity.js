@@ -8,7 +8,7 @@ const SelectCity = (props) => {
     return(
         <div className="containerSelect">
             <select>
-                <option value="temp">{props.temp}</option>
+                <option value="weather"></option>
             </select>
             <p>{props.weather}</p>
             <p>{props.temp}</p>
