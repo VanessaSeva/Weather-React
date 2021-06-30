@@ -24,6 +24,7 @@ body {
   height: 500px;
   border-radius: 10px;
   color: whitesmoke;
+ 
 }
 .weatherBox1 {
   display: flex;
@@ -69,6 +70,7 @@ body {
   font-size: 25px;
   font-family: 'Cinzel', serif;
   
+  
   }
 .forecastDays {
   display: flex;
@@ -76,4 +78,10 @@ body {
  
   flex-wrap: wrap;
   
+}
+
+.containerSelect {
+ 
+  
+ 
 }

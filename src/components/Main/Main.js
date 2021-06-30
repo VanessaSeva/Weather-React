@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Forecast from '../Forecast/Forecast';
+import SelectCity from '../SelectCity/SelectCity';
+
 
 const Main = () => {
     const api = {
@@ -10,7 +12,6 @@ const Main = () => {
     const [data, setData] = useState('');
     const [weather, setWeather] = useState({})
 
-    
     const search = evt => {
         if (evt.key === "Enter") {
             fetch(`${api.base}weather?q=${data}&lang=fr&units=metric&APPID=${api.key}`)
@@ -18,8 +19,7 @@ const Main = () => {
             .then(result => {
                 setData('');
                 setWeather(result)
-                console.log(result);
-             })
+                 })
             
         }
     }
@@ -35,13 +35,13 @@ const Main = () => {
         let month = months[d.getMonth()];
         let year = d.getFullYear();
         let hour = d.getHours();
-      
+        
        
         return `${day} ${date} ${month} ${year} ${hour}h`
         
     }
-    
-    
+
+
 
     return (
         <div>
@@ -59,6 +59,7 @@ const Main = () => {
             </div>
           
             <div className="container">
+          
             <div className="weatherBox">
                 <h2 className="title">{dateBuilder(new Date())}</h2>
                 <div className="conditions">
@@ -72,10 +73,13 @@ const Main = () => {
             {weather.weather?.[0].description}
                 </p>
                 </div>
+                <SelectCity weather={weather.name} temp={weather.main ? Math.round(weather.main.temp) : ''}/>
             </div>
-          
+         
             </div>
-           <Forecast dateBuilder={dateBuilder} search={search}/>
+           
+           <Forecast dateBuilder={dateBuilder} search={weather} weather={weather}/>
+
         </div>
     )
 }
