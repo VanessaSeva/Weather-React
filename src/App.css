@@ -32,7 +32,7 @@ body {
   border: 1px solid rgba(247, 242, 242, 0.3);
   margin-top: 50px;
   width: 100px;
-  height: 150px;
+  height: 170px;
   border-radius: 10px;
   color: whitesmoke;
 }
@@ -80,8 +80,7 @@ body {
   
 }
 
-.containerSelect {
- 
-  
- 
+.searchButton {
+  margin-top: 25px;
+  cursor: pointer;
 }

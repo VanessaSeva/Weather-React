@@ -3,7 +3,7 @@ import Forecast from '../Forecast/Forecast';
 import SelectCity from '../SelectCity/SelectCity';
 
 
-const Main = () => {
+const Main = (props) => {
     const api = {
         key: "76a27df4ea541168980658d2bbc73e19",
         base: "http://api.openweathermap.org/data/2.5/"
@@ -11,21 +11,21 @@ const Main = () => {
 
     const [data, setData] = useState('');
     const [weather, setWeather] = useState({})
-    const [ville, setVille] = useState('')
+    const [ville, setVille] = useState([])
 
-    const search = evt => {
-        if (evt.key === "Enter") {
-            fetch(`${api.base}weather?q=${data}&lang=fr&units=metric&APPID=${api.key}`)
+    const search = () => {
+        fetch(`${api.base}weather?q=${data}&lang=fr&units=metric&APPID=${api.key}`)
             .then(res => res.json())
             .then(result => {
                 setVille(data)
-                setData('');
+                setData('')
                 setWeather(result)
+                console.log(result);
                  })
             
-        }
-    }
-    
+        
+                }
+
     const dateBuilder = (d) => {
 
         d = new Date(d);
@@ -54,11 +54,12 @@ const Main = () => {
             <div>
                 <input className="inputSearch" type="text" 
                 placeholder="chercher une ville" 
-                onChange={e => setData(e.target.value)} 
                 value={data}
-                onKeyPress={search}
+                onChange={e => setData(e.target.value)} 
                 />
             </div>
+            <button type="submit" className="searchButton"  onClick={search}>Search</button>
+
           
             <div className="container">
           
@@ -75,12 +76,12 @@ const Main = () => {
             {weather.weather?.[0].description}
                 </p>
                 </div>
-                <SelectCity weather={weather.name} temp={weather.main ? Math.round(weather.main.temp) : ''}/>
+                <SelectCity weather={weather.name} temp={weather.main ? Math.round(weather.main.temp) : ''} />
             </div>
          
             </div>
            
-           <Forecast dateBuilder={dateBuilder} search={weather} ville={ville} />
+           <Forecast dateBuilder={dateBuilder} search={weather} ville={ville} weather={weather.name} />
 
         </div>
     )
